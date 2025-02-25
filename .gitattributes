@@ -1,24 +1,12 @@
-# Set text files to be automatically normalized to LF (Line Feed) on all platforms
 * text=auto
-
-# TypeScript files (ensure GitHub detects it correctly as TypeScript)
-*.ts linguist-language=TypeScript
-*.tsx linguist-language=TypeScript
-
-# JavaScript files
-*.js linguist-language=JavaScript
-*.jsx linguist-language=JavaScript
-
-# Tailwind config (ensure it's treated as text)
-tailwind.config.js text
-
-# Next.js pages and components
-pages/* text
-components/* text
-
-# Ignore generated files (optional, depends on your setup)
-.next/* linguist-generated=true
-out/* linguist-generated=true
-
-# Ignore Node modules and other vendor files
-node_modules/* linguist-generated=true
+*.css text
+*.ts text
+*.tsx text
+.next/* binary
+out/* binary
+node_modules/* binary
+*.log binary
+.vscode/* binary
+.idea/* binary
+.DS_Store binary
+Thumbs.db binary
