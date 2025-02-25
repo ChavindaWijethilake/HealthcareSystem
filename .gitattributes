@@ -1,5 +1,27 @@
-*.js linguist-detectable=true
-*.jsx linguist-detectable=true
-*.ts linguist-detectable=true
-*.tsx linguist-detectable=true
-*.py linguist-detectable=false
+# Set text files to be automatically normalized (line endings)
+* text=auto
+
+# Tailwind CSS files - ensure proper handling of CSS files
+*.css text
+
+# TypeScript files
+*.ts text
+*.tsx text
+
+# Next.js build and cache directories (avoid committing build artifacts)
+.next/* binary
+out/* binary
+
+# Node modules (avoid committing dependencies)
+node_modules/* binary
+
+# Logs
+*.log binary
+
+# Ignore configuration files like IDE settings
+.vscode/* binary
+.idea/* binary
+
+# Ignore other common artifacts
+.DS_Store binary
+Thumbs.db binary
