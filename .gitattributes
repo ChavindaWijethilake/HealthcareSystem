@@ -1,19 +1,5 @@
-* text=auto
-
-*.css text
-
-*.ts text
-*.tsx text
-
-.next/* binary
-out/* binary
-
-node_modules/* binary
-
-*.log binary
-
-.vscode/* binary
-.idea/* binary
-
-.DS_Store binary
-Thumbs.db binary
+*.js linguist-language=JavaScript
+*.jsx linguist-language=JavaScript
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
+*.css linguist-language=CSS
