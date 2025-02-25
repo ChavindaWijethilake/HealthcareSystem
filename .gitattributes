@@ -1,12 +1,5 @@
-* text=auto
-*.css text
-*.ts text
-*.tsx text
-.next/* binary
-out/* binary
-node_modules/* binary
-*.log binary
-.vscode/* binary
-.idea/* binary
-.DS_Store binary
-Thumbs.db binary
+*.js linguist-detectable=true
+*.jsx linguist-detectable=true
+*.ts linguist-detectable=true
+*.tsx linguist-detectable=true
+*.py linguist-detectable=false
