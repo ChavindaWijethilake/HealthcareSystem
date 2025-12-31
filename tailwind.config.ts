@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
+import tailwindcssAnimate from "tailwindcss-animate";
 
-const { fontFamily } = require("tailwindcss/defaultTheme");
-
-const config = {
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -22,32 +22,36 @@ const config = {
     extend: {
       colors: {
         green: {
-          500: "#24AE7C",
-          600: "#0D2A1F",
+          500: "#2dd4bf", // Vibrant Teal
+          600: "#14b8a6", // Darker Teal
+        },
+        primary: {
+          DEFAULT: "#2dd4bf",
+          foreground: "#ffffff",
         },
         blue: {
-          500: "#79B5EC",
-          600: "#152432",
+          500: "#38bdf8", // Sky Blue
+          600: "#0284c7",
         },
         red: {
-          500: "#F37877",
-          600: "#3E1716",
-          700: "#F24E43",
+          500: "#fb7185", // Rose
+          600: "#e11d48",
+          700: "#be123c",
         },
         light: {
-          200: "#E8E9E9",
+          200: "#f1f5f9", // Slate 100
         },
         dark: {
-          200: "#0D0F10",
-          300: "#131619",
-          400: "#1A1D21",
-          500: "#363A3D",
-          600: "#76828D",
-          700: "#ABB8C4",
+          200: "#0f172a", // Slate 900
+          300: "#1e293b", // Slate 800
+          400: "#334155", // Slate 700
+          500: "#475569", // Slate 600
+          600: "#94a3b8", // Slate 400
+          700: "#cbd5e1", // Slate 300
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
       },
       backgroundImage: {
         appointments: "url('/assets/images/appointments-bg.png')",
@@ -75,7 +79,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+  plugins: [tailwindcssAnimate],
+};
 
 export default config;

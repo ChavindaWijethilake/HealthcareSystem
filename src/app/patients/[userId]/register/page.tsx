@@ -5,32 +5,33 @@ import { getUser } from '@/src/lib/actions/patient.action';
 import Link from 'next/link';
 import Chatbot from '@/src/components/Chatbot';
 
-const Register = async ({ params: { userId } }: SearchParamProps) => {
+const Register = async ({ params }: SearchParamProps) => {
+  const { userId } = await params;
   const user = await getUser(userId);
-  
+
   return (
     <div className="flex h-screen max-h-screen">
-     <section className="remove-scrollbar container my-auto">
+      <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[860px] flex-1 flex-col py-10">
-         <Link href="/" className="cursor-pointer">
-          <Image
-            src="/assets/icons/headerlogo.jpg"
-            height={1000}
-            width={1000}
-            alt="patient"
-            className="mb-12 h-10 w-fit rounded-md"
-          />
-         </Link>
+          <Link href="/" className="cursor-pointer">
+            <Image
+              src="/assets/icons/brand-logo.png"
+              height={1000}
+              width={1000}
+              alt="patient"
+              className="mb-12 h-10 w-fit rounded-md"
+            />
+          </Link>
 
-        <RegisterForm user={user} />
-        <Chatbot />
+          <RegisterForm user={user} />
+          <Chatbot />
 
-        
-        <p className="copyright py-12">
-          ©  Healthcare
-        </p>
-      </div>
-     </section>
+
+          <p className="copyright py-12">
+            © Healthcare
+          </p>
+        </div>
+      </section>
 
     </div>
   )

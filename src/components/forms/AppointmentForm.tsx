@@ -17,20 +17,20 @@ import { newAppointment, updateAppointment } from "@/src/lib/actions/appointment
 import { Appointment } from "@/types/appwrite.types"
 
 const AppointmentForm = ({
-    userId, patientId, type, appointment, setOpen
+  userId, patientId, type, appointment, setOpen
 }: {
-    userId: string;
-    patientId: string;
-    type: "create" | "schedule" | "cancel";
-    appointment?: Appointment;
-    setOpen: (open: boolean) => void;
+  userId: string;
+  patientId: string;
+  type: "create" | "schedule" | "cancel";
+  appointment?: Appointment;
+  setOpen?: (open: boolean) => void;
 }) => {
 
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const AppointmentFormValidation = getAppointmentSchema(type);
-  
+
   const form = useForm<z.infer<typeof AppointmentFormValidation>>({
     resolver: zodResolver(AppointmentFormValidation),
     defaultValues: {
@@ -41,10 +41,10 @@ const AppointmentForm = ({
       cancellationReason: appointment?.cancellationReason || '',
     },
   })
- 
-  async function onSubmit( values: z.infer<typeof AppointmentFormValidation>) {
 
-    console.log('Im submitting',{type})
+  async function onSubmit(values: z.infer<typeof AppointmentFormValidation>) {
+
+    console.log('Im submitting', { type })
     setIsLoading(true);
 
     let status;
@@ -58,51 +58,51 @@ const AppointmentForm = ({
       default:
         status = "pending";
     }
-console.log({type})
+    console.log({ type })
     try {
-        if (type === "create" && patientId) {
-            const appointmentData = {
-              userId,
-              patient: patientId,
-              primaryPhysician: values.primaryPhysician,
-              schedule: new Date(values.schedule),
-              reason: values.reason!,
-              note: values.note,
-              status: status as Status,
-            }
-
-            const appointment = await newAppointment(appointmentData);
-
-            if (appointment) {
-                form.reset();
-                router.push(
-                  `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
-                );
-              }
-        } else {
-          console.log('Updating appointment')
-          const appointmentToUpdate = {
-            userId,
-            appointmentId: appointment?.$id!,
-            appointment: {
-              primaryPhysician: values?.primaryPhysician,
-              schedule: new Date(values?.schedule),
-              status: status as Status,
-              cancellationReason: values?.cancellationReason,
-            },
-            type
-          }
-
-          const updatedAppointment = await updateAppointment(appointmentToUpdate);
-          
-          if(updatedAppointment) {
-            setOpen && setOpen(false);
-            form.reset();
-          }
+      if (type === "create" && patientId) {
+        const appointmentData = {
+          userId,
+          patient: patientId,
+          primaryPhysician: values.primaryPhysician,
+          schedule: new Date(values.schedule),
+          reason: values.reason!,
+          note: values.note,
+          status: status as Status,
         }
 
-    
-    }catch(error){
+        const appointment = await newAppointment(appointmentData);
+
+        if (appointment) {
+          form.reset();
+          router.push(
+            `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
+          );
+        }
+      } else {
+        console.log('Updating appointment')
+        const appointmentToUpdate = {
+          userId,
+          appointmentId: appointment?.$id!,
+          appointment: {
+            primaryPhysician: values?.primaryPhysician,
+            schedule: new Date(values?.schedule),
+            status: status as Status,
+            cancellationReason: values?.cancellationReason,
+          },
+          type
+        }
+
+        const updatedAppointment = await updateAppointment(appointmentToUpdate);
+
+        if (updatedAppointment) {
+          setOpen && setOpen(false);
+          form.reset();
+        }
+      }
+
+
+    } catch (error) {
       console.log(error);
     }
 
@@ -131,61 +131,61 @@ console.log({type})
           <h1 className="header text-cyan-400">New Appointment</h1>
           <p className="text-dark-700">Request a new appointment</p>
         </section>}
-        
+
         {type !== "cancel" && (
-            <>
-                <CustomFormField
-                    fieldType={FormFieldType.SELECT}
-                    control={form.control}
-                    name="primaryPhysician"
-                    label="Doctor"
-                    placeholder="Select a doctor"
-                >
-                {Doctors.map((doctor, i) => (
+          <>
+            <CustomFormField
+              fieldType={FormFieldType.SELECT}
+              control={form.control}
+              name="primaryPhysician"
+              label="Doctor"
+              placeholder="Select a doctor"
+            >
+              {Doctors.map((doctor, i) => (
                 <SelectItem key={doctor.name} value={doctor.name}>
-                    <div className="flex cursor-pointer items-center gap-2">
+                  <div className="flex cursor-pointer items-center gap-2">
                     <Image
-                        src={doctor.image}
-                        width={32}
-                        height={32}
-                        alt="doctor.name"
-                        className="rounded-full border border-dark-500"
+                      src={doctor.image}
+                      width={32}
+                      height={32}
+                      alt="doctor.name"
+                      className="rounded-full border border-dark-500"
                     />
                     <p>{doctor.name}</p>
-                    </div>
+                  </div>
                 </SelectItem>
-                ))}
-                </CustomFormField>
+              ))}
+            </CustomFormField>
 
-                <CustomFormField
-                    fieldType={FormFieldType.DATE_PICKER}
-                    control={form.control}
-                    name="schedule"
-                    label="Expected appointment date"
-                    showTimeSelect
-                    dateFormat="MM/dd/yyyy  -  h:mm aa"
-                />
+            <CustomFormField
+              fieldType={FormFieldType.DATE_PICKER}
+              control={form.control}
+              name="schedule"
+              label="Expected appointment date"
+              showTimeSelect
+              dateFormat="MM/dd/yyyy  -  h:mm aa"
+            />
 
-                <div className={"flex flex-col gap-6 xl:flex-row"}>
-                  <CustomFormField
-                    fieldType={FormFieldType.TEXTAREA}
-                    control={form.control}
-                    name="reason"
-                    label="Reason for Appointment "
-                    placeholder="Enter reason for appointment"
-                   />
+            <div className={"flex flex-col gap-6 xl:flex-row"}>
+              <CustomFormField
+                fieldType={FormFieldType.TEXTAREA}
+                control={form.control}
+                name="reason"
+                label="Reason for Appointment "
+                placeholder="Enter reason for appointment"
+              />
 
-                  <CustomFormField
-                    fieldType={FormFieldType.TEXTAREA}
-                    control={form.control}
-                    name="note"
-                    label="Comments/notes"
-                    placeholder="Enter notes"
-                   />
-                </div>
-            </>
+              <CustomFormField
+                fieldType={FormFieldType.TEXTAREA}
+                control={form.control}
+                name="note"
+                label="Comments/notes"
+                placeholder="Enter notes"
+              />
+            </div>
+          </>
         )}
-        
+
         {type === "cancel" && (
           <CustomFormField
             fieldType={FormFieldType.TEXTAREA}

@@ -3,7 +3,7 @@
 import { Message, useChat } from "ai/react";
 import { Messages } from "./Messages";
 import { ChatInput } from "./ChatInput";
-import { Chatbot } from "./components/Chatbot";
+import Chatbot from "./Chatbot";
 
 export const ChatWrapper = ({
   sessionId,
@@ -30,8 +30,8 @@ export const ChatWrapper = ({
         handleSubmit={handleSubmit}
         setInput={setInput}
       />
-      <Chatbot/>
+      <Chatbot />
     </div>
-    
+
   );
 };

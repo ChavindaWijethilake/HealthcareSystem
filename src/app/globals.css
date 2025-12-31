@@ -170,7 +170,7 @@
   }
 
   .shad-primary-btn {
-    @apply bg-teal-700 text-white !important;
+    @apply bg-green-500 hover:bg-green-600 text-white shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 !important;
   }
 
   .shad-danger-btn {

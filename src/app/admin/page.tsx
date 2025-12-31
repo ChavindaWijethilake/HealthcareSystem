@@ -14,11 +14,11 @@ const Admin = async () => {
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col space-y-14">
-        <nav>
-         <header className="admin-header">
+      <nav>
+        <header className="admin-header">
           <Link href="/" className="cursor-pointer">
             <Image
-              src="/assets/icons/headerlogo.jpg"
+              src="/assets/icons/logo-revamp.png"
               height={32}
               width={162}
               alt="logo"
@@ -27,14 +27,14 @@ const Admin = async () => {
           </Link>
 
           <p className="text-16-semibold">Admin Dashboard</p>
-         </header>
-        </nav>
-        <main className="admin-main">
-          <section className="w-full space-y-4">
-            <h1 className="header text-cyan-500">Welcome </h1>
-          </section>
-          
-          <section className="admin-stat">
+        </header>
+      </nav>
+      <main className="admin-main">
+        <section className="w-full space-y-4">
+          <h1 className="header text-cyan-500">Welcome </h1>
+        </section>
+
+        <section className="admin-stat">
           <StatCard
             type="appointments"
             count={appointments.scheduledCount}
@@ -53,17 +53,17 @@ const Admin = async () => {
             label="Cancelled appointments"
             icon={"/assets/icons/cancelled.svg"}
           />
-          
-          </section>
-          
 
-          <DataTable columns={columns} data={appointments.documents} />
-          
-        </main>
-        <div className="fixed bottom-5 right-5 z-50">
-          <Chatbot />
-        </div>
-        
+        </section>
+
+
+        <DataTable columns={columns} data={appointments.documents} />
+
+      </main>
+      <div className="fixed bottom-5 right-5 z-50">
+        <Chatbot />
+      </div>
+
 
     </div>
   )

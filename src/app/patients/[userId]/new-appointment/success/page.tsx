@@ -5,26 +5,26 @@ import { Doctors } from '@/src/constants';
 import { formatDateTime } from '@/src/lib/utils';
 import { Button } from '@/src/components/ui/button';
 
-const Success = async ({params: { userId }, searchParams }:SearchParamProps) => {
-
-    const appointmentId = (searchParams?.appointmentId as string) || "";
-    const appointment = await getAppointment(appointmentId);
-    const doctor = Doctors.find((doc) => doc.name === appointment.primaryPhysician)
+const Success = async ({ params, searchParams }: SearchParamProps) => {
+  const { userId } = await params;
+  const { appointmentId } = await searchParams;
+  const appointment = await getAppointment(appointmentId as string || "");
+  const doctor = Doctors.find((doc) => doc.name === appointment.primaryPhysician)
 
   return (
     <div className=" flex h-screen max-h-screen px-[5%]">
-        <div className="success-img">
-         <Link href="/">
+      <div className="success-img">
+        <Link href="/">
           <Image
-            src="/assets/icons/logo-full.jpeg"
+            src="/assets/icons/logo-revamp.png"
             height={1000}
             width={1000}
             alt="logo"
             className="h-10 w-fit rounded-md"
           />
-         </Link>
+        </Link>
 
-         <section className="flex flex-col items-center">
+        <section className="flex flex-col items-center">
           <Image
             src="/assets/gifs/success.gif"
             height={300}
@@ -66,10 +66,10 @@ const Success = async ({params: { userId }, searchParams }:SearchParamProps) => 
             New Appointment
           </Link>
         </Button>
-        
-        <p className="copyright">© Ayuniya</p>
-        
-        </div>
+
+        <p className="copyright">© Healthcare</p>
+
+      </div>
     </div>
   )
 }
