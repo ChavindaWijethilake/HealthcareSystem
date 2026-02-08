@@ -1,4 +1,4 @@
-# 🏥 Ayuniya Healthcare System
+# 🏥 Healthcare System
 
 > A modern, secure, and efficient patient management system built with Next.js and Appwrite.
 
@@ -6,7 +6,7 @@
 
 ## 📋 Overview
 
-**Ayuniya Healthcare** is a comprehensive web application designed to streamline patient registration, appointment scheduling, and administrative workflows. It leverages the power of **Next.js 15** for a responsive frontend and **Appwrite** for a robust, secure backend.
+**Healthcare System** is a comprehensive web application designed to streamline patient registration, appointment scheduling, and administrative workflows. It leverages the power of **Next.js 15** for a responsive frontend and **Appwrite** for a robust, secure backend.
 
 ### Key Features
 -   **Patient Registration**: extensive profile management with ID verification.

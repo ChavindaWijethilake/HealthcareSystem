@@ -1,7 +1,7 @@
 # Technical Overview
 
 ## Project Description
-The **Healthcare System** (Ayuniya Healthcare) is a patient management application designed to streamline the process of patient registration, appointment scheduling, and administrative management. It provides a user-friendly interface for patients to book appointments and for administrators to manage the workflow.
+The **Healthcare System** is a patient management application designed to streamline the process of patient registration, appointment scheduling, and administrative management. It provides a user-friendly interface for patients to book appointments and for administrators to manage the workflow.
 
 ## Technology Stack
 

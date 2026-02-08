@@ -25,7 +25,7 @@ export enum FormFieldType {
 const PatientForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const form = useForm<z.infer<typeof UserFormValidation>>({
     resolver: zodResolver(UserFormValidation),
     defaultValues: {
@@ -34,7 +34,7 @@ const PatientForm = () => {
       phone: "",
     },
   })
- 
+
   async function onSubmit({ name, email, phone }: z.infer<typeof UserFormValidation>) {
     setIsLoading(true);
 
@@ -56,9 +56,9 @@ const PatientForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
         <section className="mb-12 space-y-4">
           <h1 className="header text-cyan-400"> Welcome</h1>
-          <p className="text-dark-700">To Ayuniya Healthcare</p>
+          <p className="text-dark-700">To Healthcare System</p>
         </section>
-        
+
         <CustomFormField
           fieldType={FormFieldType.INPUT}
           control={form.control}
@@ -86,7 +86,7 @@ const PatientForm = () => {
           label="Phone number"
           placeholder="Enter your phone number"
         />
-        
+
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
     </Form>
