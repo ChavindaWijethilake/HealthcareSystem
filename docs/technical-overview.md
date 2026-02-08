@@ -32,9 +32,9 @@ The application follows a modern **Serverless / BaaS architecture** using Next.j
 
 ```mermaid
 graph TD
-    User[User (Patient/Admin)] -->|Interact| UI[Next.js UI (Client Comp.)]
-    UI -->|Server Actions| Server[Next.js Server]
-    Server -->|SDK Calls| Appwrite[Appwrite Backend]
+    User["User (Patient/Admin)"] -->|Interact| UI["Next.js UI (Client Comp.)"]
+    UI -->|Server Actions| Server["Next.js Server"]
+    Server -->|SDK Calls| Appwrite["Appwrite Backend"]
     
     subgraph Appwrite Backend
         Auth[Authentication]

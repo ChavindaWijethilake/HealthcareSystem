@@ -29,7 +29,7 @@ The application follows a secure Serverless architecture pattern.
 
 ```mermaid
 graph TD
-    User[User (Patient/Admin)] -->|HTTPS| Frontend[Next.js App Router]
+    User["User (Patient/Admin)"] -->|HTTPS| Frontend["Next.js App Router"]
     
     subgraph "Secure Server Environment"
         Frontend -->|Server Actions| ServerLayer[API Layer]
