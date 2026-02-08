@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏥 Ayuniya Healthcare System
 
-## Getting Started
+> A modern, secure, and efficient patient management system built with Next.js and Appwrite.
 
-First, run the development server:
+![Project Banner](https://img.shields.io/badge/Status-Active-success?style=for-the-badge) ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge) ![Version](https://img.shields.io/badge/Version-1.0.0-orange?style=for-the-badge)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📋 Overview
+
+**Ayuniya Healthcare** is a comprehensive web application designed to streamline patient registration, appointment scheduling, and administrative workflows. It leverages the power of **Next.js 15** for a responsive frontend and **Appwrite** for a robust, secure backend.
+
+### Key Features
+-   **Patient Registration**: extensive profile management with ID verification.
+-   **Appointment Scheduling**: Seamless booking system with doctor selection.
+-   **Admin Dashboard**: Centralized view for managing appointments and patients.
+-   **SMS Notifications**: Automated updates for appointment status.
+-   **Secure File Storage**: Encrypted storage for sensitive identification documents.
+
+## 🛠️ Technology Stack
+
+| Category | Technologies |
+| :--- | :--- |
+| **Frontend** | ![Next.js](https://img.shields.io/badge/Next.js-black?style=flat-square&logo=next.js&logoColor=white) ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white) |
+| **Backend** | ![Appwrite](https://img.shields.io/badge/Appwrite-FD366E?style=flat-square&logo=appwrite&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat-square&logo=node.js&logoColor=white) |
+| **Tools** | ![Sentry](https://img.shields.io/badge/Sentry-362D59?style=flat-square&logo=sentry&logoColor=white) ![Twilio](https://img.shields.io/badge/Twilio-F22F46?style=flat-square&logo=twilio&logoColor=white) ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=flat-square&logo=zod&logoColor=white) |
+
+## 🏗️ Architecture
+
+The application follows a secure Serverless architecture pattern.
+
+```mermaid
+graph TD
+    User["User (Patient/Admin)"] -->|HTTPS| Frontend["Next.js App Router"]
+    
+    subgraph "Secure Server Environment"
+        Frontend -->|Server Actions| ServerLayer[API Layer]
+        ServerLayer -->|SDK| Auth[Appwrite Auth]
+        ServerLayer -->|SDK| DB[Appwrite Database]
+        ServerLayer -->|SDK| Storage[Appwrite Storage]
+        ServerLayer -->|API| Notification[Twilio/Messaging]
+    end
+    
+    Auth -->|Session| Frontend
+    DB -->|JSON Data| Frontend
+    Storage -->|File URL| Frontend
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💾 Database Schema
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The database is designed with `Patients`, `Appointments`, and `Doctors` as core entities.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```mermaid
+erDiagram
+    PATIENT ||--o{ APPOINTMENT : "books"
+    DOCTOR ||--o{ APPOINTMENT : "manages"
 
-## Learn More
+    PATIENT {
+        string name
+        string email
+        string phone
+        date birthDate
+        string gender
+        string identificationType
+        string identificationNumber
+    }
 
-To learn more about Next.js, take a look at the following resources:
+    APPOINTMENT {
+        string patientId FK
+        string doctorId FK
+        datetime schedule
+        string status "pending | scheduled | cancelled"
+        string reason
+    }
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    DOCTOR {
+        string name
+        string specialization
+        string image
+    }
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Getting Started
 
-## Deploy on Vercel
+Follow these steps to run the project locally.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
+-   Node.js v18+
+-   Appwrite Account (Cloud or Self-hosted)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Installation
+
+1.  **Clone the repo**
+    ```bash
+    git clone https://github.com/your-username/healthcare-system.git
+    cd healthcare-system
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Setup Environment Variables**
+    Create a `.env.local` file:
+    ```env
+    NEXT_PUBLIC_ENDPOINT=https://cloud.appwrite.io/v1
+    PROJECT_ID=your_project_id
+    API_KEY=your_api_key
+    # ... see docs/setup-guide.md for full list
+    ```
+
+4.  **Run the app**
+    ```bash
+    npm run dev
+    ```
+
+## 📂 Documentation
+
+For detailed technical documentation, please refer to the `docs/` directory:
+
+-   [Technical Overview](./docs/technical-overview.md)
+-   [Database Schema](./docs/database-schema.md)
+-   [Code Review & Patterns](./docs/code-review.md)
+-   [Setup & Deployment Guide](./docs/setup-guide.md)
+
+---
+*Built with ❤️ by [Chavinda Wijethilake]*
